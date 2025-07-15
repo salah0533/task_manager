@@ -73,16 +73,13 @@ const Header = () => {
             <Icon icon="solar:list-bold" height={20} />
           </IconButton>
 
-          <Notification />
 
 
           <Box flexGrow={1} />
           <>
             <Stack spacing={2} direction="row" alignItems="center">
-              <Button variant="contained" color="primary" target="_blank" href="https://www.wrappixel.com/templates/spike-nextjs-admin-template/?ref=376#demos">
-                Check Pro Template
-              </Button>
-              <Profile />
+              <Notification />
+              {/* <Profile /> */}
             </Stack>
           </>
 

@@ -29,7 +29,7 @@ const Sidebar = (
               sx: {
                 width: sidebarWidth,
                 boxShadow: '0 9px 17.5px rgb(0, 0, 0, 0.05)!important',
-                top: '72px'
+                top: '0'
               },
             }
           }}

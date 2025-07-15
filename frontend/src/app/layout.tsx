@@ -13,8 +13,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/favicon.ico" />
-        <title>Spike Next.js + Ts + Mui</title>
+        <link rel="icon" href="#" />
+        <title></title>
       </head>
       <body>
         <ThemeProvider theme={baselightTheme}>

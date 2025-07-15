@@ -63,12 +63,12 @@ const Profile = () => {
           },
         }}
       >
-        <MenuItem>
+        {/* <MenuItem>
           <ListItemIcon>
             <IconUser width={20} />
           </ListItemIcon>
           <ListItemText>My Profile</ListItemText>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem>
           <ListItemIcon>
             <IconMail width={20} />
