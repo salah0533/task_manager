@@ -24,7 +24,7 @@ const Menuitems: MenuitemsType[] = [
         id: uniqueId(),
         title: "Task page",
         icon: "window-frame-broken",
-        href: "/sample-page",
+        href: "/task-page",
     }
 ];
 
