@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
+import { Task} from '@/types';
 
 import {
   Button,
@@ -15,16 +16,9 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions} from '@mui/material';
+  DialogActions
+} from '@mui/material';
 
-type Task = {
-  id: number;
-  title: string;
-  creationDate: string;
-  completionDate: string | null;
-  priority: string;
-  status: string;
-};
 
 const initialTasks: Task[] = [
   {
@@ -62,7 +56,7 @@ export default function TasksPage() {
 
  const filteredTasks = tasks.filter((task) =>
     task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    task.creationDate.includes(searchQuery) ||
+    (task.creationDate && task.creationDate.includes(searchQuery)) ||
     (task.completionDate && task.completionDate.includes(searchQuery)) ||
     task.priority.toLowerCase().includes(searchQuery.toLowerCase()) ||
     task.status.toLowerCase().includes(searchQuery.toLowerCase())
