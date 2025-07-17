@@ -1,24 +1,31 @@
 export type Task = {
   id: number;
   title: string;
+  description:string;
   creationDate: string | null;
   completionDate: string | null;
-  priority: string;
-  status: string;
+  priority_id: number;
+  status_id: number;
 };
-
+export type TaskStatus={
+    id:number;
+    status:string;
+}
+export type TaskPriority={
+    id:number;
+    priority:string;
+}
 export type AddTask = {
   title: string;
-  creationDate: string | null;
-  completionDate: string | null;
-  priority: string;
-  status: string;
+  description:string;
+  priority_id: number;
+  status_id: number;
 };
 
 export type EditTask = {
   id: number;
   title: string;
-  completionDate: string | null;
-  priority: string;
-  status: string;
+  description:string;
+  priority_id: number;
+  status_id: number;
 };
