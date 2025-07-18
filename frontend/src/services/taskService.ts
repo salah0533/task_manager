@@ -27,7 +27,7 @@ export async function addTask(task:AddTask){
 }
 
 export async function editTask(task:EditTask){
-  const res = await fetch(getTaskUrl(""),
+  const res = await fetch(getTaskUrl("/update"),
  {
     method:"POST",
     headers:{
