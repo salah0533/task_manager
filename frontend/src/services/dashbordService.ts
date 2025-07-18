@@ -1,7 +1,7 @@
-import {getDashbordUrl} from "@/utils/urlHelpers"
+import {getDashboardUrl} from "@/utils/urlHelpers"
 
 export async function fetch_stats(){
-    const res = await fetch(getDashbordUrl("/stats"))
+    const res = await fetch(getDashboardUrl("/stats"))
   switch (res.status) {
     case 200:
       return res.json();
