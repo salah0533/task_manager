@@ -11,30 +11,42 @@ import AddIcon from '@mui/icons-material/Add';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import PendingIcon from '@mui/icons-material/Schedule';
 import DoneIcon from '@mui/icons-material/CheckCircle';
+import {fetch_stats} from "@/services/dashbordService"
+import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
+  const [statData, setStatData] = useState([
+    {key:"delete_counter", icon: <DeleteIcon />, title: "Deleted Tasks", value: 0, color: "#e57373" },
+    {key:"edit_counter", icon: <EditIcon />, title: "Edited Tasks", value: 0, color: "#64b5f6" },
+    {key:"added_counter", icon: <AddIcon />, title: "Added Tasks", value: 0, color: "#81c784" },
+    {key:"In Progress", icon: <HourglassBottomIcon />, title: "In Progress", value: 0, color: "#ffb74d" },
+    {key:"Pending", icon: <PendingIcon />, title: "Pending Tasks", value: 0, color: "#ba68c8" },
+    {key:"Completed", icon: <DoneIcon />, title: "Completed Tasks", value: 0, color: "#4db6ac" },
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch_stats();
+      const data = res.res
+      setStatData(prev=> prev.map(
+        (item)=>({...item,value:data[item.key] || item.value})
+      ))
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <PageContainer title='Dashboard' description='this is Dashboard'>
       <Box>
           <Grid container spacing={3}>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} >
-              <StatCard icon={<DeleteIcon />} title="Deleted Tasks" value={12} color="#e57373" />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <StatCard icon={<EditIcon />} title="Edited Tasks" value={8} color="#64b5f6" />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <StatCard icon={<AddIcon />} title="Added Tasks" value={15} color="#81c784" />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <StatCard icon={<HourglassBottomIcon />} title="In Progress" value={5} color="#ffb74d" />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <StatCard icon={<PendingIcon />} title="Pending Tasks" value={3} color="#ba68c8" />
-            </Grid>
-            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-              <StatCard icon={<DoneIcon />} title="Completed Tasks" value={20} color="#4db6ac" />
-            </Grid>
+          {
+              statData.map((stat, index) => (
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+                  <StatCard icon={stat.icon} title={stat.title} value={stat.value} color={stat.color} />
+                </Grid>
+              ))
+          }
           </Grid>
       </Box>
     </PageContainer>
