@@ -1,7 +1,9 @@
 import {getDashboardUrl} from "@/utils/urlHelpers"
 
 export async function fetch_stats(){
-    const res = await fetch(getDashboardUrl("/stats"))
+    const res = await fetch(getDashboardUrl("/stats"),{
+      credentials: "include"
+    })
   switch (res.status) {
     case 200:
       return res.json();
