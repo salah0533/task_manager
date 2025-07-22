@@ -7,6 +7,7 @@ from services.usersService import user_exist,add_user,get_user_by_email
 from models.users import Users
 from services.authService import valid_email
 from db.session import get_db
+from core.config import COKIE_MAX_AGE
 
 
 router = APIRouter(prefix="/auth",tags=["Auth"])
@@ -26,7 +27,7 @@ def login(req:LogInBase, response: Response,db: Session = Depends(get_db)):
             key="access_token",
             value=token,
             httponly=True,
-            max_age=60 * 60,
+            max_age=COKIE_MAX_AGE,
             samesite="Lax",
             secure=False,
         )
