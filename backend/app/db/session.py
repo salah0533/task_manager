@@ -1,11 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import json
-from core.config import load_keys
+from core.config import DATABASE_URL
 
-KEYS = load_keys()
 
-engine = create_engine(KEYS["DATABASE_URL"])
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine,autoflush=False,autocommit=False)
 
 
