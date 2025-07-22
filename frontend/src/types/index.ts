@@ -29,3 +29,14 @@ export type EditTask = {
   priority_id: number;
   status_id: number;
 };
+
+export type RegisterType ={
+  name:String;
+  email:String;
+  password:String;
+}
+
+export type LogInType = {
+  email:String;
+  password:String
+}
