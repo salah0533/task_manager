@@ -1,9 +1,4 @@
-import os
-import json
-
-def load_keys():
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    KEYS_DIR = os.path.join(BASE_DIR,"..","keys.json")
-
-    with open(KEYS_DIR,"r") as f:
-        return json.load(f)
+SECRET_KEY = "you-sekret-key"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60  
+ALGORITHM = "HS256"
+DATABASE_URL = "postgresql+psycopg2://postgres:0882%26%26533@localhost:5432/taskManager"
