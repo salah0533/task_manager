@@ -10,3 +10,7 @@ export const tokenExist = (isLogedIn:boolean):boolean=>{
     }
     return true
 }
+
+export const logout = ()=>{
+  localStorage.removeItem("isLogedIn")
+}
