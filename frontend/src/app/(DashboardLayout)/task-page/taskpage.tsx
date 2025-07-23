@@ -4,6 +4,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Task,TaskPriority,TaskStatus} from '@/types';
 import {addTask,editTask,deleteTask,fetchTasks} from "@/services/taskService"
+import { useRouter } from 'next/navigation';
+
 import {
   Button,
   Table,
@@ -42,7 +44,7 @@ export default function TasksPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [taskStatus, setTaskStatus] = useState<{ [key: number]: string }>({});
   const [taskPriority, setTaskPriority] = useState<{[key:number]:string}>({});
-
+  const router = useRouter();
 
  const filteredTasks = tasks.filter((task) =>
     task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -63,7 +65,7 @@ export default function TasksPage() {
         alert("No tasks selected for deletion.");
         return;
       }
-      await deleteTask(selected);
+      await deleteTask(selected,router);
       
       setTasks((prev) => prev.filter((task) => !selected.includes(task.id)));
       setSelected([]);
@@ -76,7 +78,7 @@ export default function TasksPage() {
 
   const handleDelete = async (id: number) => {
     try {
-      await deleteTask([id]); 
+      await deleteTask([id],router); 
       setTasks((prev) => prev.filter((task) => task.id !== id));
     } catch (error) {
       alert("Failed to delete selected tasks.");
@@ -106,7 +108,7 @@ export default function TasksPage() {
           description: editingTask.description,
           priority_id: editingTask.priority_id,
           status_id: editingTask.status_id
-        });
+        },router);
         const newTask = { ...editingTask, id: Date.now() };
         setTasks((prev) => [...prev, newTask]);
       } catch (error) {
@@ -122,7 +124,7 @@ export default function TasksPage() {
           description: editingTask.description,
           priority_id: editingTask.priority_id,
           status_id: editingTask.status_id
-        });
+        },router);
         setTasks((prev) =>
           prev.map((task) => (task.id === editingTask.id ? editingTask : task))
         );
@@ -157,7 +159,7 @@ export default function TasksPage() {
 
     const fetchData = async () => {
       try{
-            const response = await fetchTasks();
+            const response = await fetchTasks(router);
             setTasks(response.res.tasks);
 
             const statusMap: { [key: number]: string } = {};
