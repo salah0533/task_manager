@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useEffect } from "react";
 import { login } from "@/services/authAuthService";
 import { LogInType } from "@/types/index";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import {setLogOut} from "@/redux/slices/isLogedInSlice";
 import CustomTextField from "@/app/(DashboardLayout)/components/forms/theme-elements/CustomTextField";
 import {
   Box,
@@ -22,7 +24,7 @@ const AuthLogin = ({ title, subtitle, subtext }: {
   subtext?: JSX.Element | JSX.Element[];
 }) => {
   const router = useRouter();
-
+  const dispatch = useDispatch();
   
   const handleSubmit =async (event: React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
@@ -38,6 +40,9 @@ const AuthLogin = ({ title, subtitle, subtext }: {
         alert(error);
     }
   }
+  useEffect(() => {
+    dispatch(setLogOut());
+  }, []);
 
   return (<>
     {title ? (
