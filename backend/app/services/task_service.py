@@ -57,9 +57,9 @@ def edit_task(db:Session,id:int,title:str,description:str,status_id:int,priority
         db.rollback()
         raise e
 
-def fetch_tasks(db:Session,user_id:int):
-    try: 
-        return db.query(Task).filter(Task.user_id==user_id).all()
+def fetch_task_statuses(db:Session):
+    try:
+        return db.query(TaskStatus).all()
     except SQLAlchemyError as e:
         db.rollback()
         raise e
