@@ -13,6 +13,7 @@ import PendingIcon from '@mui/icons-material/Schedule';
 import DoneIcon from '@mui/icons-material/CheckCircle';
 import {fetch_stats} from "@/services/dashbordService"
 import { useEffect, useState } from 'react';
+import withAuth from '@/utils/withAuth';
 
 const Dashboard = () => {
   const [statData, setStatData] = useState([
@@ -53,4 +54,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default withAuth(Dashboard);

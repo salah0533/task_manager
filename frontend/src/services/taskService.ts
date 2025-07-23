@@ -6,6 +6,7 @@ export async function addTask(task:AddTask){
   const res = await fetch(getTaskUrl(""),
  {
     method:"POST",
+    credentials: "include",
     headers:{
         "Content-Type":"application/json"
     },
