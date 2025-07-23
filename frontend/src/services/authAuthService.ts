@@ -1,7 +1,6 @@
 import {RegisterType,LogInType} from "@/types/index"
 import {getAuthUrl} from "@/utils/urlHelpers"
-import {setLogOut} from "@/redux/slices/isLogedInSlice"
-import { useDispatch } from "react-redux"
+
 
 export async function register(data:RegisterType){
   const res = await fetch(getAuthUrl("/register"),
@@ -10,7 +9,7 @@ export async function register(data:RegisterType){
     headers:{
         "Content-Type":"application/json"
     },
-    body:JSON.stringify(data)
+    body:JSON.stringify(data),
  }
 )
   switch (res.status) {
@@ -34,9 +33,13 @@ export async function login(data:LogInType){
     headers:{
         "Content-Type":"application/json"
     },
-    body:JSON.stringify(data)
+    body:JSON.stringify(data),
+    credentials: "include",
+
  }
 )
+  console.log("cooockie",document.cookie);
+
   switch (res.status) {
     case 200:
       return res.json();
@@ -49,11 +52,4 @@ export async function login(data:LogInType){
     default:
       throw new Error(`Unhandled status code: ${res.status}`);
   }
-}
-
-export const  logout = ()=>{
-  const dispatch = useDispatch()
-  dispatch(setLogOut())
-  localStorage.removeItem("isLogedIn")
-
 }

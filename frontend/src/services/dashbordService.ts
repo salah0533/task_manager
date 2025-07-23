@@ -2,6 +2,7 @@ import {getDashboardUrl} from "@/utils/urlHelpers"
 
 export async function fetch_stats(){
     const res = await fetch(getDashboardUrl("/stats"),{
+      method:"GET",
       credentials: "include"
     })
   switch (res.status) {

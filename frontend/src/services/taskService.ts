@@ -3,6 +3,7 @@ import {getTaskUrl} from "@/utils/urlHelpers"
 import {AddTask,EditTask} from "@/types"
 
 export async function addTask(task:AddTask){
+
   const res = await fetch(getTaskUrl(""),
  {
     method:"POST",
@@ -34,7 +35,9 @@ export async function editTask(task:EditTask){
     headers:{
         "Content-Type":"application/json"
     },
-    body:JSON.stringify(task)
+    body:JSON.stringify(task),
+    credentials: "include",
+
  }
 )
   switch (res.status) {
@@ -58,6 +61,7 @@ export async function deleteTask(ids:number[]){
     headers:{
         "Content-Type":"application/json"
     },
+    credentials: "include",
     body:JSON.stringify(
         {
             ids:ids
@@ -84,7 +88,9 @@ export async function fetchTasks(){
   const res = await fetch(getTaskUrl(""),
  {
     method:"GET",
+    credentials: "include",
  }
+
 )
   switch (res.status) {
     case 200:
