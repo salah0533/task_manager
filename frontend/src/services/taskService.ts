@@ -1,8 +1,9 @@
 
 import {getTaskUrl} from "@/utils/urlHelpers"
 import {AddTask,EditTask} from "@/types"
+import {logout} from "@/utils/cokiesHelper"
 
-export async function addTask(task:AddTask){
+export async function addTask(task:AddTask,router: any){
 
   const res = await fetch(getTaskUrl(""),
  {
@@ -18,7 +19,8 @@ export async function addTask(task:AddTask){
     case 200:
       return res.json();
     case 401:
-      throw new Error('Unauthorized access');
+      logout()
+      router.replace('/authentication/login');
     case 404:
       throw new Error('Resource not found');
     case 500:
@@ -28,7 +30,7 @@ export async function addTask(task:AddTask){
   }
 }
 
-export async function editTask(task:EditTask){
+export async function editTask(task:EditTask,router: any){
   const res = await fetch(getTaskUrl("/update"),
  {
     method:"POST",
@@ -44,7 +46,8 @@ export async function editTask(task:EditTask){
     case 200:
       return res.json();
     case 401:
-      throw new Error('Unauthorized access');
+      logout()
+      router.replace('/authentication/login');
     case 404:
       throw new Error('Resource not found');
     case 500:
@@ -54,7 +57,7 @@ export async function editTask(task:EditTask){
   }
 }
 
-export async function deleteTask(ids:number[]){
+export async function deleteTask(ids:number[],router: any){
   const res = await fetch(getTaskUrl("/delete"),
  {
     method:"POST",
@@ -73,7 +76,8 @@ export async function deleteTask(ids:number[]){
     case 200:
       return res.json();
     case 401:
-      throw new Error('Unauthorized access');
+      logout()
+      router.replace('/authentication/login');
     case 404:
       throw new Error('Resource not found');
     case 500:
@@ -84,7 +88,7 @@ export async function deleteTask(ids:number[]){
 }
 
 
-export async function fetchTasks(){
+export async function fetchTasks(router: any){
   const res = await fetch(getTaskUrl(""),
  {
     method:"GET",
@@ -96,7 +100,8 @@ export async function fetchTasks(){
     case 200:
       return res.json();
     case 401:
-      throw new Error('Unauthorized access');
+      logout()
+      router.replace('/authentication/login');
     case 404:
       throw new Error('Resource not found');
     case 500:

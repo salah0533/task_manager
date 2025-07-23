@@ -1,6 +1,7 @@
 import {getDashboardUrl} from "@/utils/urlHelpers"
+import {logout} from "@/utils/cokiesHelper"
 
-export async function fetch_stats(){
+export async function fetch_stats(router: any){
     const res = await fetch(getDashboardUrl("/stats"),{
       method:"GET",
       credentials: "include"
@@ -9,7 +10,8 @@ export async function fetch_stats(){
     case 200:
       return res.json();
     case 401:
-      throw new Error('Unauthorized access');
+      logout()
+      router.replace('/authentication/login');
     case 404:
       throw new Error('Resource not found');
     case 500:
