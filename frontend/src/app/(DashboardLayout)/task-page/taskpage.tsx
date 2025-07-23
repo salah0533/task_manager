@@ -33,35 +33,6 @@ const initialTasksPriority:TaskPriority[]=[
   {id:2,priority:"Normal"},
   {id:3,priority:"High"}
 ]
-const initialTasks: Task[] = [
-  {
-    id: 1,
-    title: 'create task page',
-    description: 'Implement the task management page with CRUD operations',
-    creationDate: '2025-07-15 17:05:06',
-    completionDate: null,
-    priority_id: 2,
-    status_id: 2,
-  },
-    {
-    id: 2,
-    title: 'modify dashboard page',
-    creationDate: '2025-07-15 17:05:06',
-    description: 'Implement the task management page with CRUD operations',
-    completionDate: null,
-    priority_id: 2,
-    status_id: 1,
-  },
-    {
-    id: 3,
-    title: 'documentation update',
-      description: 'Implement the task management page with CRUD operations',
-    creationDate: '2025-07-15 17:05:06',
-    completionDate: null,
-    priority_id: 2,
-    status_id: 1,
-  },
-];
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
