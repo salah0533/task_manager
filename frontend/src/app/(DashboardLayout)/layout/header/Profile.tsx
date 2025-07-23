@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import LogoutButton from "@/app/(DashboardLayout)/components/shared/LogoutButton";
+
 import {
   Avatar,
   Box,
@@ -15,6 +17,7 @@ import { IconListCheck, IconMail, IconUser } from "@tabler/icons-react";
 
 const Profile = () => {
   const [anchorEl2, setAnchorEl2] = useState(null);
+
   const handleClick2 = (event: any) => {
     setAnchorEl2(event.currentTarget);
   };
@@ -69,17 +72,21 @@ const Profile = () => {
           </ListItemIcon>
           <ListItemText>My Profile</ListItemText>
         </MenuItem> */}
-        <MenuItem>
+        {/* <MenuItem>
           <ListItemIcon>
             <IconMail width={20} />
           </ListItemIcon>
           <ListItemText>My Account</ListItemText>
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem>
           <ListItemIcon>
             <IconListCheck width={20} />
           </ListItemIcon>
-          <ListItemText>My Tasks</ListItemText>
+          <ListItemText>
+            <Link href="/task-page" passHref>
+              My Tasks
+            </Link>
+          </ListItemText>
         </MenuItem>
         <Box
           sx={{
@@ -87,15 +94,7 @@ const Profile = () => {
             py: 1,
             px: 2
           }}>
-          <Button
-            href="/authentication/login"
-            variant="outlined"
-            color="primary"
-            component={Link}
-            fullWidth
-          >
-            Logout
-          </Button>
+          <LogoutButton />
         </Box>
       </Menu>
     </Box>)
