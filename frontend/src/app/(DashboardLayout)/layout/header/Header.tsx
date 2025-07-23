@@ -78,8 +78,8 @@ const Header = () => {
           <Box flexGrow={1} />
           <>
             <Stack spacing={2} direction="row" alignItems="center">
-              <Notification />
-              {/* <Profile /> */}
+              {/* <Notification /> */}
+              <Profile />
             </Stack>
           </>
 
