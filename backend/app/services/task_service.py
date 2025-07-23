@@ -6,6 +6,7 @@ from models.task_stats import TaskStats
 from models.task_priority import TaskPriority
 from datetime import datetime
 from fastapi import HTTPException
+from utility.time_helper import convert_utc_to_algiers
 
 def add_task(db:Session,title:str,description:str,status_id:int,priority_id:int,user_id:int):
 
@@ -63,9 +64,20 @@ def fetch_tasks(db:Session,user_id:int):
         db.rollback()
         raise e
     
-def fetch_task_statuses(db:Session):
-    try:
-        return db.query(TaskStatus).all()
+def fetch_tasks(db:Session,user_id:int):
+    try: 
+        tasks =  db.query(Task).filter(Task.user_id==user_id).all()
+
+        return  [{
+            "id": task.id,
+            "title": task.title,
+            "description": task.description,
+            "creationDate": convert_utc_to_algiers(task.date),
+            "completionDate": convert_utc_to_algiers(task.completion_date),
+            "status_id": task.status_id,
+            "priority_id": task.priority_id,
+        } for task in tasks]
+
     except SQLAlchemyError as e:
         db.rollback()
         raise e
