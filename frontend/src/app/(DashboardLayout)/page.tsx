@@ -13,9 +13,11 @@ import PendingIcon from '@mui/icons-material/Schedule';
 import DoneIcon from '@mui/icons-material/CheckCircle';
 import {fetch_stats} from "@/services/dashbordService"
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import withAuth from '@/utils/withAuth';
 
 const Dashboard = () => {
+  const router = useRouter();
   const [statData, setStatData] = useState([
     {key:"delete_counter", icon: <DeleteIcon />, title: "Deleted Tasks", value: 0, color: "#e57373" },
     {key:"edit_counter", icon: <EditIcon />, title: "Edited Tasks", value: 0, color: "#64b5f6" },
@@ -27,7 +29,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch_stats();
+      const res = await fetch_stats(router);
       const data = res.res
       setStatData(prev=> prev.map(
         (item)=>({...item,value:data[item.key] || item.value})

@@ -2,7 +2,8 @@ import {RegisterType,LogInType} from "@/types/index"
 import {getAuthUrl} from "@/utils/urlHelpers"
 
 
-export async function register(data:RegisterType){
+export async function register(data:RegisterType){  
+
   const res = await fetch(getAuthUrl("/register"),
  {
     method:"POST",
@@ -38,7 +39,6 @@ export async function login(data:LogInType){
 
  }
 )
-  console.log("cooockie",document.cookie);
 
   switch (res.status) {
     case 200:
@@ -53,3 +53,5 @@ export async function login(data:LogInType){
       throw new Error(`Unhandled status code: ${res.status}`);
   }
 }
+
+
