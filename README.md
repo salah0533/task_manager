@@ -46,7 +46,11 @@ It allows users to create, edit, delete, and track tasks with statuses and prior
 ---
 
 ## 📁 Project Structure
+<<<<<<< HEAD
     
+=======
+    ```text
+>>>>>>> 67b135abf3c075bda3cd4dfc659ef2ff40dc4250
     project-root/
     │
     ├── backend/
