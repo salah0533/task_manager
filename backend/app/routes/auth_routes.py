@@ -27,8 +27,8 @@ def login(req:LogInBase, response: Response,db: Session = Depends(get_db)):
             value=token,
             httponly=True,
             max_age=COKIE_MAX_AGE,
-            samesite="Lax",
-            secure=False,
+            samesite="None",
+            secure=True,
         )
         return {"message": "Login successful"}
      except SQLAlchemyError as e:
