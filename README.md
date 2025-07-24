@@ -82,7 +82,7 @@ It allows users to create, edit, delete, and track tasks with statuses and prior
     source venv/bin/activate  # or .\venv\Scripts\activate on Windows
     pip install -r requirements.txt
 
-3. Update config.py inside app/core/ with your DB config and secret keys.
+3. Update .envExaple inside app/ with your DB config and secret keys then change its name to .env 
 
 4. Initialize Alembic:
     ```bash
