@@ -1,0 +1,8 @@
+SECRET_KEY = you-sekret-key
+ACCESS_TOKEN_EXPIRE_MINUTES = 2592000
+ALGORITHM = HS256
+DATABASE_URL = mysql+mysqlconnector://username:password@localhost:3306/database
+COKIE_MAX_AGE = 2592000
+
+SERVER_HOST = 127.0.0.1
+PORT = 8000
