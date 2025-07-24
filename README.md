@@ -46,26 +46,26 @@ It allows users to create, edit, delete, and track tasks with statuses and prior
 ---
 
 ## 📁 Project Structure
+    
+    project-root/
+    │
+    ├── backend/
+    │ ├── alembic/
+    │ │ └── versions/
+    │ ├── app/
+    │ │ ├── db/
+    │ │ ├── models/
+    │ │ ├── routers/
+    | | |__ schemas/
+    │ │ ├── services/
+    | | |__ utility/
+    │ │ └── main.py
+    │ └── requirements.txt
+    │
+    ├── frontend/
 
-project-root/
-│
-├── backend/
-│ ├── alembic/
-│ │ └── versions/
-│ ├── app/
-│ │ ├── db/
-│ │ ├── models/
-│ │ ├── routers/
-| | |__ schemas/
-│ │ ├── services/
-| | |__ utility/
-│ │ └── main.py
-│ └── requirements.txt
-│
-├── frontend/
 
-
----
+    ---
 
 ## 🧰 Setup Instructions
 
@@ -103,6 +103,7 @@ project-root/
         alembic revision --autogenerate -m "initailization"
     . update upgrade function
         - at alembic/versions find file name initailization.py then replace upgrade function and add these import :
+            ```bash
             from sqlalchemy.sql import column,table
             from sqlalchemy import Integer,String
             def upgrade() -> None:
@@ -117,7 +118,6 @@ project-root/
                     column("priority",String)
 
                 )
-                
                 op.bulk_insert(task_status_table, [
                     {"id":1 ,"status": "Pending"},
                     {"id":2,"status": "In Progress"},
