@@ -98,15 +98,17 @@ It allows users to create, edit, delete, and track tasks with statuses and prior
     alebic upgrade head
 
 8. Insert default task statuses and priorities:
-    . Generate migration:
+    - Generate migration:
         ```bash
         alembic revision --autogenerate -m "initailization"
-    . update upgrade function
-        - at alembic/versions find file name initailization.py then replace upgrade function and add these import :
-            ```bash
-            from sqlalchemy.sql import column,table
-            from sqlalchemy import Integer,String
-            def upgrade() -> None:
+    - update upgrade function
+        - at alembic/versions find file name initailization.py:
+            - add these import:
+                ```python
+                from sqlalchemy.sql import column,table
+                from sqlalchemy import Integer,String
+            - replace the content of upgrade function whith this:
+                ```python
                 task_status_table = table(
                     "task_statuses", 
                     column("id", Integer),
