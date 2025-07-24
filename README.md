@@ -153,11 +153,11 @@ http://localhost:8000/docs (Swagger UI)
 
 📌 Upcoming Features
 
-. Task due dates and reminders
+- Task due dates and reminders
 
-. Pagination and filtering
+- Pagination and filtering
 
-. Drag and drop task sorting
+- Drag and drop task sorting
 
-. Export tasks to CSV/PDF
+- Export tasks to CSV/PDF
 
